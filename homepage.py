@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import plotly.express as px
 import altair as alt
 
 data15 = pd.read_csv("cleaned-data/data_2015.csv")
