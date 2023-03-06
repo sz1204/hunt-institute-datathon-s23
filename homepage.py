@@ -1,5 +1,7 @@
 import streamlit as st
 import pandas as pd
+import plotly.express as px
+import altair as alt
 
 data15 = pd.read_csv("cleaned-data/data_2015.csv")
 data16 = pd.read_csv("cleaned-data/data_2016.csv")
@@ -30,6 +32,14 @@ st.sidebar.title("Please Filter Here")
 # health = st.sidebar.radio() # Filter side bars through type of healthcare - physical or mental
 
 
+
+# Creating bar charts for graduation rate per county
+df = data15[['County', 'Graduation Rate']]
+chart = alt.Chart(df).mark_bar().encode(
+    x='County',
+    y='Graduation Rate'
+)
+st.altair_chart(chart, use_container_width=True)
 
 
 primary_color = "#bf293c"
