@@ -11,6 +11,18 @@ data20 = pd.read_csv("cleaned-data/data_2020.csv")
 data21 = pd.read_csv("cleaned-data/data_2021.csv")
 data22 = pd.read_csv("cleaned-data/data_2022.csv")
 
+rural_counties = ["Cherokee", "Graham", "Clay", "Polk", "Yancey", "Alleghany", "Caswell", "Warren", "Greene", "Bladen", "Hyde", "Tyrrell"]
+mixed_rural_counties = ['Alexander', 'Anson', 'Ashe', 'Avery', 'Beaufort', 'Bertie', 'Brunswick', 'Burke', 'Caldwell', 'Camden', 'Carteret', 'Chatham', 'Chowan', 'Cleveland', 'Columbus', 'Craven', 'Currituck', 'Dare', 'Davidson', 'Davie', 'Duplin', 'Edgecombe', 'Franklin', 'Gates', 'Granville', 'Halifax', 'Harnett', 'Haywood', 'Henderson', 'Hertford', 'Hoke', 'Iredell', 'Jackson', 'Johnston', 'Jones', 'Lee', 'Lenoir', 'Lincoln', 'Macon', 'Madison', 'Martin', 'McDowell', 'Mitchell', 'Montgomery', 'Moore', 'Nash', 'Northampton', 'Onslow', 'Pamlico', 'Pasquotank', 'Pender', 'Perquimans', 'Person', 'Pitt', 'Randolph', 'Richmond', 'Robeson', 'Rockingham', 'Rowan', 'Rutherford', 'Sampson', 'Scotland', 'Stanly', 'Stokes', 'Surry', 'Swain', 'Transylvania', 'Union', 'Vance', 'Washington', 'Watauga', 'Wayne', 'Wilkes', 'Wilson', 'Yadkin']
+mixed_urban_counties = ["Buncombe", "Gaston", "Cabarrus", "Catawba", "Guilford", "Alamance", "Orange", "Cumberland"]
+urban_counties = ["Mecklenburg", "Forsyth", "Durham", "Wake", "New Hanover"]
+
+density_categories = {
+    'Rural': rural_counties,
+    'Mixed Rural': mixed_rural_counties,
+    'Mixed Urban': mixed_urban_counties,
+    'Urban': urban_counties
+}
+
 # emojis: https://www.webfx.com/tools/emoji-cheat-sheet/
 st.set_page_config(page_title="Homepage", page_icon=":books:", layout="wide")
 
@@ -23,11 +35,9 @@ st.markdown('   ')
 
 # Sidebar
 st.sidebar.title("Please Filter Here")
-# demographic = st.sidebar.radio() # Filter side bars through urban-rural density
-#density = st.sidebar.multiselect(
-#    "Select the Density:",
-#    options=df[""].unique()
-#)
+selected_densities = st.sidebar.multiselect('Select population densities', list(density_categories.keys()))
+mask = data15['County'].isin(sum([density_categories[d] for d in selected_densities], []))
+filtered_data = data15[mask]
 # health = st.sidebar.radio() # Filter side bars through type of healthcare - physical or mental
 
 
