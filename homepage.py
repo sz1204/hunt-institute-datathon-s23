@@ -1,6 +1,10 @@
 import streamlit as st
 import pandas as pd
 import altair as alt
+<<<<<<< HEAD
+=======
+import matplotlib.pyplot as plt
+>>>>>>> 37e69edd2daccf595329e905817cc07764ca84ad
 
 data15 = pd.read_csv("cleaned-data/data_2015.csv")
 data16 = pd.read_csv("cleaned-data/data_2016.csv")
@@ -40,7 +44,21 @@ mask = data15['County'].isin(sum([density_categories[d] for d in selected_densit
 filtered_data = data15[mask]
 # health = st.sidebar.radio() # Filter side bars through type of healthcare - physical or mental
 
+files = ["data{}.csv".format(year) for year in range(2015, 2023)]
 
+# create a sidebar select to choose the year
+selected_year = st.sidebar.selectbox("Select a year", range(2015, 2023))
+
+# read the selected CSV file based on the selected year
+data = pd.read_csv(files[selected_year - 2015])
+
+# create a bar chart based on the % of severe housing problems
+fig, ax = plt.subplots()
+ax.bar(data['County'], data['% of severe housing problems'])
+ax.set_xlabel("County")
+ax.set_ylabel("% of severe housing problems")
+ax.set_title("Severe Housing Problems in {}".format(selected_year))
+st.pyplot(fig)
 
 # Creating bar charts for graduation rate per county
 df = data15[['County', 'Graduation Rate', '% Severe Housing Problems']]
