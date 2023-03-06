@@ -33,10 +33,10 @@ st.sidebar.title("Please Filter Here")
 
 
 # Creating bar charts for graduation rate per county
-df = data22[['County', 'Graduation Rate', '% Rural']]
+df = data22[['County', 'High School Graduation Rate', '% Rural']]
 bar_chart = alt.Chart(df).mark_bar(color='orange').encode(
     x='County',
-    y='Graduation Rate'
+    y='High School Graduation Rate'
 )
 # Create a line chart for % Rural using Altair
 line_chart = alt.Chart(df).mark_line(color='blue').encode(
