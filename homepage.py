@@ -1,7 +1,10 @@
 import streamlit as st
 import pandas as pd
 import altair as alt
+<<<<<<< HEAD
+=======
 import matplotlib.pyplot as plt
+>>>>>>> 37e69edd2daccf595329e905817cc07764ca84ad
 
 data15 = pd.read_csv("cleaned-data/data_2015.csv")
 data16 = pd.read_csv("cleaned-data/data_2016.csv")
@@ -43,6 +46,21 @@ selected_year = st.sidebar.selectbox("Select a year", range(2015, 2023))
 
 file_name: str = "data" + (str)(int(selected_year) - 2000)
 print(file_name)
+
+# Creating bar charts for graduation rate per county
+df = data15[['County', 'Graduation Rate', '% Severe Housing Problems']]
+bar_chart = alt.Chart(df).mark_bar(color='primary_color').encode(
+    x='County',
+    y='Graduation Rate'
+)
+# Create a line chart for % Rural using Altair
+line_chart = alt.Chart(df).mark_line(color='secondary_color').encode(
+    x='County',
+    y='% Severe Housing Problems'
+)
+# Overlay the two charts
+chart = (bar_chart + line_chart)
+st.altair_chart(chart, use_container_width=True)
 
 
 primary_color = "#bf293c"
