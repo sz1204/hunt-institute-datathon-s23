@@ -1,6 +1,9 @@
 import streamlit as st
+import pandas as pd
+import plotly.express as px
 
-st.set_page_config(page_title="Homepage", page_icon="assets/hunt-institute.jpg", layout="wide")
+# emojis: https://www.webfx.com/tools/emoji-cheat-sheet/
+st.set_page_config(page_title="Homepage", page_icon=":books:", layout="wide")
 
 st.image("assets/hunt-institute.jpg", width=100)
 
@@ -10,10 +13,13 @@ st.markdown('   ')
 
 
 # Sidebar
-st.sidebar.title("Filters")
-form_name = st.sidebar.selectbox()
-demographic = st.sidebar.radio() # Filter side bars through urban-rural density
-health = st.sidebar.radio() # Filter side bars through type of healthcare - physical or mental
+st.sidebar.title("Please Filter Here")
+# demographic = st.sidebar.radio() # Filter side bars through urban-rural density
+#density = st.sidebar.multiselect(
+#    "Select the Density:",
+#    options=df[""].unique()
+#)
+# health = st.sidebar.radio() # Filter side bars through type of healthcare - physical or mental
 
 
 
