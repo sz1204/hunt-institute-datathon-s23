@@ -1,6 +1,4 @@
 import streamlit as st
-import pandas as pd
-import plotly.express as px
 
 # emojis: https://www.webfx.com/tools/emoji-cheat-sheet/
 st.set_page_config(page_title="Homepage", page_icon=":books:", layout="wide")
