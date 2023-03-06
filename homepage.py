@@ -42,11 +42,16 @@ filtered_data = data15[mask]
 
 
 df = data15[['County', 'Physically Unhealthy Days', '% Severe Housing Problems']]
-bar_chart = alt.Chart(df).mark_bar(color='primary_color').encode(
+
+percentage_physical_unhealth = list()
+for i in data15['Physically Unhealthy Days']:
+    percentage_physical_unhealth.append(percentage_physical_unhealth, data15['Physically Unhealthy Days'] / 365)
+
+bar_chart = alt.Chart(df).mark_line(color='blue').encode(
     x='County',
-    y='Physically Unhealthy Days'
+    y=percentage_physical_unhealth
 )
-line_chart = alt.Chart(df).mark_line(color='secondary_color').encode(
+line_chart = alt.Chart(df).mark_line(color='orange').encode(
     x='County',
     y='% Severe Housing Problems'
 )
