@@ -1,10 +1,7 @@
 import streamlit as st
 import pandas as pd
 import altair as alt
-<<<<<<< HEAD
-=======
 import matplotlib.pyplot as plt
->>>>>>> 37e69edd2daccf595329e905817cc07764ca84ad
 
 data15 = pd.read_csv("cleaned-data/data_2015.csv")
 data16 = pd.read_csv("cleaned-data/data_2016.csv")
