@@ -39,23 +39,17 @@ st.sidebar.title("Please Filter Here")
 selected_densities = st.sidebar.multiselect('Select population densities', list(density_categories.keys()))
 mask = data15['County'].isin(sum([density_categories[d] for d in selected_densities], []))
 filtered_data = data15[mask]
-selected_year = st.sidebar.selectbox("Select a year", range(2015, 2023))
 
-file_name: str = "data" + (str)(int(selected_year) - 2000)
-print(file_name)
 
-# Creating bar charts for graduation rate per county
-df = data15[['County', 'Graduation Rate', '% Severe Housing Problems']]
+df = data15[['County', 'Physically Unhealthy Days', '% Severe Housing Problems']]
 bar_chart = alt.Chart(df).mark_bar(color='primary_color').encode(
     x='County',
-    y='Graduation Rate'
+    y='Physically Unhealthy Days'
 )
-# Create a line chart for % Rural using Altair
 line_chart = alt.Chart(df).mark_line(color='secondary_color').encode(
     x='County',
     y='% Severe Housing Problems'
 )
-# Overlay the two charts
 chart = (bar_chart + line_chart)
 st.altair_chart(chart, use_container_width=True)
 
