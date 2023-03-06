@@ -33,7 +33,7 @@ st.sidebar.title("Please Filter Here")
 
 
 # Creating bar charts for graduation rate per county
-df = data15[['County', 'Graduation Rate', '% Rural']]
+df = data22[['County', 'Graduation Rate', '% Rural']]
 bar_chart = alt.Chart(df).mark_bar(color='orange').encode(
     x='County',
     y='Graduation Rate'
