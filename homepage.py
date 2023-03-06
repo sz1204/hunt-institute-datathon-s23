@@ -41,24 +41,6 @@ mask = data15['County'].isin(sum([density_categories[d] for d in selected_densit
 filtered_data = data15[mask]
 
 
-df = data15[['County', 'Physically Unhealthy Days', '% Severe Housing Problems']]
-
-percentage_physical_unhealth = list()
-for i in data15['Physically Unhealthy Days']:
-    percentage_physical_unhealth.append(percentage_physical_unhealth, data15['Physically Unhealthy Days'] / 365)
-
-bar_chart = alt.Chart(df).mark_line(color='blue').encode(
-    x='County',
-    y=percentage_physical_unhealth
-)
-line_chart = alt.Chart(df).mark_line(color='orange').encode(
-    x='County',
-    y='% Severe Housing Problems'
-)
-chart = (bar_chart + line_chart)
-st.altair_chart(chart, use_container_width=True)
-
-
 primary_color = "#bf293c"
 secondary_color = "#3a3d7f"
 text_color = "#37393e"
