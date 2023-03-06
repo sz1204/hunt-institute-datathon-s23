@@ -41,9 +41,9 @@ mask = data15['County'].isin(sum([density_categories[d] for d in selected_densit
 filtered_data = data15[mask]
 
 scatter_plot = alt.Chart(data15).mark_circle(size=60).encode(
-    x="% Severe Housing Problems",
-    y="% Some College",
-    tooltip=["County", "% Severe Housing Problems", "% Some College"]
+    x="Mentally Unhealthy Days",
+    y="# Mental Health Providers",
+    tooltip=["County", "Mentally Unhealthy Days", "# Mental Health Providers"]
 ).interactive()
 
 # display the scatter plot using Streamlit
