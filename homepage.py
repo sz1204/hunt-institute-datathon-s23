@@ -39,23 +39,10 @@ st.sidebar.title("Please Filter Here")
 selected_densities = st.sidebar.multiselect('Select population densities', list(density_categories.keys()))
 mask = data15['County'].isin(sum([density_categories[d] for d in selected_densities], []))
 filtered_data = data15[mask]
-# health = st.sidebar.radio() # Filter side bars through type of healthcare - physical or mental
-
-files = ["data{}.csv".format(year) for year in range(2015, 2023)]
-
-# create a sidebar select to choose the year
 selected_year = st.sidebar.selectbox("Select a year", range(2015, 2023))
 
-# read the selected CSV file based on the selected year
-data = pd.read_csv(files[selected_year - 2015])
-
-# create a bar chart based on the % of severe housing problems
-fig, ax = plt.subplots()
-ax.bar(data['County'], data['% of severe housing problems'])
-ax.set_xlabel("County")
-ax.set_ylabel("% of severe housing problems")
-ax.set_title("Severe Housing Problems in {}".format(selected_year))
-st.pyplot(fig)
+file_name: str = "data" + (str)(int(selected_year) - 2000)
+print(file_name)
 
 
 primary_color = "#bf293c"
