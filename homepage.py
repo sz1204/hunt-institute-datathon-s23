@@ -40,6 +40,14 @@ selected_densities = st.sidebar.multiselect('Select population densities', list(
 mask = data15['County'].isin(sum([density_categories[d] for d in selected_densities], []))
 filtered_data = data15[mask]
 
+scatter_plot = alt.Chart(data15).mark_circle(size=60).encode(
+    x="% Physically Inactive",
+    y="% Severe Housing Problems",
+    tooltip=["County", "% Physically Inactive", "% Severe Housing Problems"]
+).interactive()
+
+# display the scatter plot using Streamlit
+st.altair_chart(scatter_plot, use_container_width=True)
 
 primary_color = "#bf293c"
 secondary_color = "#3a3d7f"
