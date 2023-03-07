@@ -16,28 +16,27 @@ data22 = pd.read_csv("cleaned-data/data_2022.csv")
 
 st.header("Sleep Visual")
 
-
 s = "% Severe Housing Problems"
 t = "% Insufficient Sleep"
 u = "Graduation Rate"
 dfs = []
 link = "data_20"
-#link = "https://github.com/sz1204/hunt-institute-datathon-s23/blob/main/data_20"
+link = "https://github.com/sz1204/hunt-institute-datathon-s23/blob/main/data_20"
 for i in range(16,23):
     df = pd.read_csv(link+str(i)+".csv")
     dfs.append(df.fillna(df.mean()))
     
-    #county_list = ["Cherokee", "Graham", "Clay", "Polk", "Yancey", "Alleghany", "Caswell", "Warren", "Greene", "Bladen", "Hyde", "Tyrrell"]
-    #county_list = ["Buncombe", "Gaston", "Cabarrus", "Catawba", "Guilford", "Alamance", "Orange", "Cumberland"]
-    #county_list = ["Mecklenburg", "Forsyth", "Durham", "Wake", "New Hanover"]
-    #county_list = ['Alexander', 'Anson', 'Ashe', 'Avery', 'Beaufort', 'Bertie', 'Brunswick', 'Burke', 'Caldwell', 'Camden', 'Carteret', 'Chatham', 'Chowan', 'Cleveland', 'Columbus', 'Craven', 'Currituck', 'Dare', 'Davidson', 'Davie', 'Duplin', 'Edgecombe', 'Franklin', 'Gates', 'Granville', 'Halifax', 'Harnett', 'Haywood', 'Henderson', 'Hertford', 'Hoke', 'Iredell', 'Jackson', 'Johnston', 'Jones', 'Lee', 'Lenoir', 'Lincoln', 'Macon', 'Madison', 'Martin', 'McDowell', 'Mitchell', 'Montgomery', 'Moore', 'Nash', 'Northampton', 'Onslow', 'Pamlico', 'Pasquotank', 'Pender', 'Perquimans', 'Person', 'Pitt', 'Randolph', 'Richmond', 'Robeson', 'Rockingham', 'Rowan', 'Rutherford', 'Sampson', 'Scotland', 'Stanly', 'Stokes', 'Surry', 'Swain', 'Transylvania', 'Union', 'Vance', 'Washington', 'Watauga', 'Wayne', 'Wilkes', 'Wilson', 'Yadkin']
+    county_list = ["Cherokee", "Graham", "Clay", "Polk", "Yancey", "Alleghany", "Caswell", "Warren", "Greene", "Bladen", "Hyde", "Tyrrell"]
+    county_list = ["Buncombe", "Gaston", "Cabarrus", "Catawba", "Guilford", "Alamance", "Orange", "Cumberland"]
+    county_list = ["Mecklenburg", "Forsyth", "Durham", "Wake", "New Hanover"]
+    county_list = ['Alexander', 'Anson', 'Ashe', 'Avery', 'Beaufort', 'Bertie', 'Brunswick', 'Burke', 'Caldwell', 'Camden', 'Carteret', 'Chatham', 'Chowan', 'Cleveland', 'Columbus', 'Craven', 'Currituck', 'Dare', 'Davidson', 'Davie', 'Duplin', 'Edgecombe', 'Franklin', 'Gates', 'Granville', 'Halifax', 'Harnett', 'Haywood', 'Henderson', 'Hertford', 'Hoke', 'Iredell', 'Jackson', 'Johnston', 'Jones', 'Lee', 'Lenoir', 'Lincoln', 'Macon', 'Madison', 'Martin', 'McDowell', 'Mitchell', 'Montgomery', 'Moore', 'Nash', 'Northampton', 'Onslow', 'Pamlico', 'Pasquotank', 'Pender', 'Perquimans', 'Person', 'Pitt', 'Randolph', 'Richmond', 'Robeson', 'Rockingham', 'Rowan', 'Rutherford', 'Sampson', 'Scotland', 'Stanly', 'Stokes', 'Surry', 'Swain', 'Transylvania', 'Union', 'Vance', 'Washington', 'Watauga', 'Wayne', 'Wilkes', 'Wilson', 'Yadkin']
     # create a boolean mask to filter the rows in the dataframe
-    #mask = df["County"].isin(county_list)
+    mask = df["County"].isin(county_list)
 
     # apply the mask to the dataframe
-    #filtered_df = df[mask]
+    filtered_df = df[mask]
     
-    #dfs.append(filtered_df.fillna(filtered_df.mean()))
+    dfs.append(filtered_df.fillna(filtered_df.mean()))
 
 
 """ MAKE LINE CHART """
@@ -116,13 +115,13 @@ top_correlations = corr_matrix.unstack().sort_values(ascending=False)[:1000]
 
 # print the top correlations and associated variable names if variables are different
 for i in range(0, len(top_correlations), 2):
-    #print("here")
+    print("here")
     var1 = top_correlations.index[i][0]
     var2 = top_correlations.index[i][1]
     correlation = top_correlations[i]
     if var1 != var2:
         continue
-        #print(f"{var1} and {var2}: {correlation}")
+        print(f"{var1} and {var2}: {correlation}")
 
 
 
@@ -172,8 +171,8 @@ print(transposed_list)  # [(1, 4, 7), (2, 5, 8), (3, 6, 9)]
 cos = [co[0],co[2],+co[5]]
 
 # Loop through each sub-list in the main list and plot it as a line
-#for line in transposed_list:
-#    plt.plot(line)
+for line in transposed_list:
+    plt.plot(line)
 
 plt.plot([2016,2018,2021],cos)
 # Set the axis labels and title
