@@ -34,10 +34,10 @@ st.markdown('   ')
 
 
 # Sidebar
-st.sidebar.title("Please Filter Here")
-selected_densities = st.sidebar.multiselect('Select population densities', list(density_categories.keys()))
-mask = data15['County'].isin(sum([density_categories[d] for d in selected_densities], []))
-filtered_data = data15[mask]
+# st.sidebar.title("Please Filter Here")
+# selected_densities = st.sidebar.multiselect('Select population densities', list(density_categories.keys()))
+# mask = data15['County'].isin(sum([density_categories[d] for d in selected_densities], []))
+# filtered_data = data15[mask]
 
 
 merged_data = pd.merge(data15, data22, on="County", suffixes=("_2015", "_2022"))
