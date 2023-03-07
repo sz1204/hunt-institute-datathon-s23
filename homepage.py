@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import altair as alt
-# import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 
 data15 = pd.read_csv("cleaned-data/data_2015.csv")
 data16 = pd.read_csv("cleaned-data/data_2016.csv")
@@ -40,14 +40,6 @@ selected_densities = st.sidebar.multiselect('Select population densities', list(
 mask = data15['County'].isin(sum([density_categories[d] for d in selected_densities], []))
 filtered_data = data15[mask]
 
-# scatter_plot = alt.Chart(data15).mark_circle(size=60).encode(
-#     x="% Physically Inactive",
-#     y="% Severe Housing Problems",
-#     tooltip=["County", "% Physically Inactive", "% Severe Housing Problems"]
-# ).interactive()
-
-# display the scatter plot using Streamlit
-#st.altair_chart(scatter_plot, use_container_width=True)
 
 merged_data = pd.merge(data15, data22, on="County", suffixes=("_2015", "_2022"))
 
@@ -60,11 +52,12 @@ scatter_plot = alt.Chart(merged_data).mark_circle(size=60).encode(
     tooltip=["County", "% Insufficient Sleep_2016", "% Insufficient Sleep_2022"]
 ).interactive()
 
-scatter_plot = alt.Chart(merged_data).mark_circle(size=60).encode(
-    x="Income Rate_2022",
-    y="% Insufficient Sleep_2022",
-    tooltip=["County", "Income Rate_2022", "% Insufficient Sleep_2015"]
-).interactive()
+fig, ax = plt.subplots()
+ax.scatter(data22["% Insufficient Sleep"], data22["Median Household Income"])
+ax.set_xlabel("% Insufficient Sleep")
+ax.set_ylabel("Median Household Income")
+ax.set_title("Relationship between % Insufficient Sleep and Median Household Income")
+
 
 # display the scatter plot using Streamlit
 st.altair_chart(scatter_plot, use_container_width=True)
