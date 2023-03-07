@@ -49,7 +49,7 @@ filtered_data = data15[mask]
 # display the scatter plot using Streamlit
 #st.altair_chart(scatter_plot, use_container_width=True)
 
-merged_data = pd.merge(data15, data22, on="County", suffixes=("_2015", "_2022"))
+merged_data = pd.merge(data16, data22, on="County", suffixes=("_2016", "_2022"))
 
 # create a scatter plot using Altair
 scatter_plot = alt.Chart(merged_data).mark_circle(size=60).encode(
