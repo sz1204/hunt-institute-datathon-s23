@@ -5,13 +5,13 @@ st.set_page_config(page_title="Homepage", page_icon=":books:", layout="wide")
 
 st.image("assets/hunt-institute.jpg", width=100)
 
-st.title("Welcome to the Steminists' Hunt Institute Datathon 2023 dashboard!")
+st.title("Welcome to the Steminists' Hunt Institute Datathon 2023 D2ashboard!")
 st.markdown("Our project focused on measuring how certain legislation affecting affordable housing and youth mental health impacted student physical health, mental health, and graduation.")
 st.markdown('   ')
 
 
 # Sidebar
-st.sidebar.title("Please Filter Here")
+st.sidebar.title("Please Filter Here:")
 # demographic = st.sidebar.radio() # Filter side bars through urban-rural density
 #density = st.sidebar.multiselect(
 #    "Select the Density:",
