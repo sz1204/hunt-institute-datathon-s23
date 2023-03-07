@@ -30,7 +30,7 @@ st.set_page_config(page_title="Homepage", page_icon=":books:", layout="wide")
 st.image("assets/hunt-institute.jpg", width=100)
 
 st.title("Welcome to the Steminists' Hunt Institute Datathon 2023 dashboard!")
-st.markdown("Our project focused on measuring how certain the amount and quality of sleep impacts student physical health, mental health, and graduation.")
+st.markdown("Our project focused on measuring how certain legislation affecting affordable housing and youth mental health impacted student physical health, mental health, and graduation.")
 st.markdown('   ')
 
 
@@ -49,13 +49,13 @@ filtered_data = data15[mask]
 # display the scatter plot using Streamlit
 #st.altair_chart(scatter_plot, use_container_width=True)
 
-merged_data = pd.merge(data15, data22, on="County", suffixes=("_2016", "_2022"))
+merged_data = pd.merge(data15, data22, on="County", suffixes=("_2015", "_2022"))
 
 # create a scatter plot using Altair
 scatter_plot = alt.Chart(merged_data).mark_circle(size=60).encode(
-    x="% Insufficient Sleep_2016",
-    y="% Insufficient Sleep_2022",
-    tooltip=["County", "% Insufficient Sleep_2016", "% Insufficient Sleep_2022"]
+    x="% Severe Housing Problems_2015",
+    y="% Severe Housing Problems_2022",
+    tooltip=["County", "% Severe Housing Problems_2015", "% Severe Housing Problems_2022"]
 ).interactive()
 
 # display the scatter plot using Streamlit
