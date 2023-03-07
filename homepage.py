@@ -36,26 +36,34 @@ st.markdown('   ')
 
 # Sidebar
 st.sidebar.title("Please Filter Here")
-# demographic = st.sidebar.radio() # Filter side bars through urban-rural density
-#density = st.sidebar.multiselect(
-#    "Select the Density:",
-#    options=df[""].unique()
-#)
-# health = st.sidebar.radio() # Filter side bars through type of healthcare - physical or mental
+selected_densities = st.sidebar.multiselect('Select population densities', list(density_categories.keys()))
+mask = data15['County'].isin(sum([density_categories[d] for d in selected_densities], []))
+filtered_data = data15[mask]
+
+# scatter_plot = alt.Chart(data15).mark_circle(size=60).encode(
+#     x="% Physically Inactive",
+#     y="% Severe Housing Problems",
+#     tooltip=["County", "% Physically Inactive", "% Severe Housing Problems"]
+# ).interactive()
+
+# display the scatter plot using Streamlit
+#st.altair_chart(scatter_plot, use_container_width=True)
+
+merged_data = pd.merge(data15, data22, on="County", suffixes=("_2015", "_2022"))
 
 # create a scatter plot using Altair
 
 merged_data = pd.merge(data16, data22, on)
 scatter_plot = alt.Chart(merged_data).mark_circle(size=60).encode(
-    x="% Insufficient Sleep_2015",
+    x="% Insufficient Sleep_2016",
     y="% Insufficient Sleep_2022",
-    tooltip=["County", "% Insufficient Sleep_2015", "% Insufficient Sleep_2022"]
+    tooltip=["County", "% Insufficient Sleep_2016", "% Insufficient Sleep_2022"]
 ).interactive()
 
 scatter_plot = alt.Chart(merged_data).mark_circle(size=60).encode(
     x="Income Rate_2022",
     y="% Insufficient Sleep_2022",
-    tooltip=["County", "% Insufficient Sleep_2015", "Income Rate_2022"]
+    tooltip=["County", "Income Rate_2022", "% Insufficient Sleep_2015"]
 ).interactive()
 
 # display the scatter plot using Streamlit
