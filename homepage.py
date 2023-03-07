@@ -44,10 +44,18 @@ st.sidebar.title("Please Filter Here")
 # health = st.sidebar.radio() # Filter side bars through type of healthcare - physical or mental
 
 # create a scatter plot using Altair
+
+merged_data = pd.merge(data16, data22, on)
 scatter_plot = alt.Chart(merged_data).mark_circle(size=60).encode(
     x="% Insufficient Sleep_2015",
     y="% Insufficient Sleep_2022",
     tooltip=["County", "% Insufficient Sleep_2015", "% Insufficient Sleep_2022"]
+).interactive()
+
+scatter_plot = alt.Chart(merged_data).mark_circle(size=60).encode(
+    x="Income Rate_2022",
+    y="% Insufficient Sleep_2022",
+    tooltip=["County", "% Insufficient Sleep_2015", "Income Rate_2022"]
 ).interactive()
 
 # display the scatter plot using Streamlit
