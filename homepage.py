@@ -44,14 +44,14 @@ merged_data = pd.merge(data15, data22, on="County", suffixes=("_2015", "_2022"))
 
 # create a scatter plot using Altair
 
-merged_data = pd.merge(data16, data22, on)
+merged_data = pd.merge(data16, data22, on='County', suffixes=("_2016", "_2022"))
 scatter_plot = alt.Chart(merged_data).mark_circle(size=60).encode(
     x="% Insufficient Sleep_2016",
     y="% Insufficient Sleep_2022",
     tooltip=["County", "% Insufficient Sleep_2016", "% Insufficient Sleep_2022"]
 ).interactive()
 
-scatterplot = alt.Chart(data).mark_circle().encode(
+scatterplot = alt.Chart(data22).mark_circle().encode(
     x='% Insufficient Sleep',
     y='Median Household Income',
     tooltip=['County', '% Insufficient Sleep', 'Median Household Income']
