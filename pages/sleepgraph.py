@@ -14,7 +14,7 @@ st.set_page_config(page_title="Sleep Visual", page_icon=":books:", layout="wide"
 
 st.header("Sleep Visual")
 
-data = {"2016":[data16], "2022":[data22]}
+data = {"2016":data16, "2022":data22}
  
 df = pd.DataFrame(data)
 df
