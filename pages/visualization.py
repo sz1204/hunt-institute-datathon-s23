@@ -5,4 +5,4 @@ st.set_page_config(page_title="Sleep Visual", page_icon=":books:", layout="wide"
 
 st.header("Data Correlation Visualization")
 
-st.image("Sleep vs. Grad.png", width=500)
+st.image("sleepvgrad.png", width=100)
