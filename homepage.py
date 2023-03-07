@@ -60,6 +60,7 @@ scatterplot = alt.Chart(data22).mark_circle().encode(
     height=400,
     title='Relationship between % Insufficient Sleep and Median Household Income'
 )
+st.altair_chart(scatterplot)
 
 scatterplot = alt.Chart(data22).mark_circle().encode(
     x='% Insufficient Sleep',
