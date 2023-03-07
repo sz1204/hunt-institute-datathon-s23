@@ -36,7 +36,7 @@ for i in range(len(dfs)):
 
 final_merged = []
 cols_to_keep = ["% Fair/Poor", "Mentally Unhealthy Days", "Physically Unhealthy Days", "MHP Rate", "PCP Rate", "Graduation Rate", "% Some College", "% Unemployed", "Income Ratio", "% Severe Housing Problems"]
-cols_to_keep = cols_to_keep+["% African American","% American Indian/ Alaskan Native","% Asian","% Native Hawaiian/ Other Pacific Islander","% Hispanic","% Non-Hispanic white"]
+cols_to_keep = cols_to_keep+["% African American","% American Indian/ Alaskan Native","% Asian","% Native Hawaiian/ Other Pacific Islander","% Hispanic","% Non-Hispanic white","% Insufficient Sleep"]
 # Drop all columns except the ones in the list
 
 #keep_cols = [9,19,80,14,72,102,106,112,121,
@@ -45,7 +45,7 @@ for i in merged_data[:5]:
     final_merged.append(i)
 
 cols_to_keep = ["% Fair or Poor Health","Average Number of Mentally Unhealthy Days","Average Number of Physically Unhealthy Days","Mental Health Provider Rate","Primary Care Physicians Rate","High School Graduation Rate","% Some College","% Unemployed","Income Ratio","% Severe Housing Problems"]
-cols_to_keep = cols_to_keep+["Population","% less than 18 years of age","% Rural"]+["% Black", "% American Indian & Alaska Native", "% Asian", "% Native Hawaiian/Other Pacific Islander", "% Hispanic", "% Non-Hispanic White"]
+cols_to_keep = cols_to_keep+["Population","% less than 18 years of age","% Rural"]+["% Black", "% American Indian & Alaska Native", "% Asian", "% Native Hawaiian/Other Pacific Islander", "% Hispanic", "% Non-Hispanic White","% Insufficient Sleep"]
 
 i = merged_data[5].drop(columns=[col for col in merged_data[5].columns if col not in cols_to_keep])
 final_merged.append(i)
