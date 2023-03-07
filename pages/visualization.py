@@ -7,4 +7,4 @@ st.header("Data Correlation Visualization")
 
 st.image("assets/Sleep vs. Grad.jpg", width = 700)
 
-st.image("assets/Linechart.png", width = 700)
+st.image("assets/Fixed linechart.png", width = 700)
