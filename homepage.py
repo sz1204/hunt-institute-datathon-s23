@@ -1,17 +1,41 @@
 import streamlit as st
+import pandas as pd
+import altair as alt
+# import matplotlib.pyplot as plt
+
+data15 = pd.read_csv("cleaned-data/data_2015.csv")
+data16 = pd.read_csv("cleaned-data/data_2016.csv")
+data17 = pd.read_csv("cleaned-data/data_2017.csv")
+data18 = pd.read_csv("cleaned-data/data_2018.csv")
+data19 = pd.read_csv("cleaned-data/data_2019.csv")
+data20 = pd.read_csv("cleaned-data/data_2020.csv")
+data21 = pd.read_csv("cleaned-data/data_2021.csv")
+data22 = pd.read_csv("cleaned-data/data_2022.csv")
+
+rural_counties = ["Cherokee", "Graham", "Clay", "Polk", "Yancey", "Alleghany", "Caswell", "Warren", "Greene", "Bladen", "Hyde", "Tyrrell"]
+mixed_rural_counties = ['Alexander', 'Anson', 'Ashe', 'Avery', 'Beaufort', 'Bertie', 'Brunswick', 'Burke', 'Caldwell', 'Camden', 'Carteret', 'Chatham', 'Chowan', 'Cleveland', 'Columbus', 'Craven', 'Currituck', 'Dare', 'Davidson', 'Davie', 'Duplin', 'Edgecombe', 'Franklin', 'Gates', 'Granville', 'Halifax', 'Harnett', 'Haywood', 'Henderson', 'Hertford', 'Hoke', 'Iredell', 'Jackson', 'Johnston', 'Jones', 'Lee', 'Lenoir', 'Lincoln', 'Macon', 'Madison', 'Martin', 'McDowell', 'Mitchell', 'Montgomery', 'Moore', 'Nash', 'Northampton', 'Onslow', 'Pamlico', 'Pasquotank', 'Pender', 'Perquimans', 'Person', 'Pitt', 'Randolph', 'Richmond', 'Robeson', 'Rockingham', 'Rowan', 'Rutherford', 'Sampson', 'Scotland', 'Stanly', 'Stokes', 'Surry', 'Swain', 'Transylvania', 'Union', 'Vance', 'Washington', 'Watauga', 'Wayne', 'Wilkes', 'Wilson', 'Yadkin']
+mixed_urban_counties = ["Buncombe", "Gaston", "Cabarrus", "Catawba", "Guilford", "Alamance", "Orange", "Cumberland"]
+urban_counties = ["Mecklenburg", "Forsyth", "Durham", "Wake", "New Hanover"]
+
+density_categories = {
+    'Rural': rural_counties,
+    'Mixed Rural': mixed_rural_counties,
+    'Mixed Urban': mixed_urban_counties,
+    'Urban': urban_counties
+}
 
 # emojis: https://www.webfx.com/tools/emoji-cheat-sheet/
 st.set_page_config(page_title="Homepage", page_icon=":books:", layout="wide")
 
 st.image("assets/hunt-institute.jpg", width=100)
 
-st.title("Welcome to the Steminists' Hunt Institute Datathon 2023 D2ashboard!")
+st.title("Welcome to the Steminists' Hunt Institute Datathon 2023 dashboard!")
 st.markdown("Our project focused on measuring how certain legislation affecting affordable housing and youth mental health impacted student physical health, mental health, and graduation.")
 st.markdown('   ')
 
 
 # Sidebar
-st.sidebar.title("Please Filter Here:")
+st.sidebar.title("Please Filter Here")
 # demographic = st.sidebar.radio() # Filter side bars through urban-rural density
 #density = st.sidebar.multiselect(
 #    "Select the Density:",
@@ -19,7 +43,15 @@ st.sidebar.title("Please Filter Here:")
 #)
 # health = st.sidebar.radio() # Filter side bars through type of healthcare - physical or mental
 
+# create a scatter plot using Altair
+scatter_plot = alt.Chart(merged_data).mark_circle(size=60).encode(
+    x="% Insufficient Sleep_2015",
+    y="% Insufficient Sleep_2022",
+    tooltip=["County", "% Insufficient Sleep_2015", "% Insufficient Sleep_2022"]
+).interactive()
 
+# display the scatter plot using Streamlit
+st.altair_chart(scatter_plot, use_container_width=True)
 
 
 primary_color = "#bf293c"
