@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 import altair as alt
-import matplotlib.pyplot as plt #add
 
 data15 = pd.read_csv("cleaned-data/data_2015.csv")
 data16 = pd.read_csv("cleaned-data/data_2016.csv")
@@ -52,11 +51,18 @@ scatter_plot = alt.Chart(merged_data).mark_circle(size=60).encode(
     tooltip=["County", "% Insufficient Sleep_2016", "% Insufficient Sleep_2022"]
 ).interactive()
 
-fig, ax = plt.subplots()
-ax.scatter(data22["% Insufficient Sleep"], data22["Median Household Income"])
-ax.set_xlabel("% Insufficient Sleep")
-ax.set_ylabel("Median Household Income")
-ax.set_title("Relationship between % Insufficient Sleep and Median Household Income")
+scatterplot = alt.Chart(data).mark_circle().encode(
+    x='% Insufficient Sleep',
+    y='Median Household Income',
+    tooltip=['County', '% Insufficient Sleep', 'Median Household Income']
+).properties(
+    width=600,
+    height=400,
+    title='Relationship between % Insufficient Sleep and Median Household Income'
+)
+
+# Show the plot using Streamlit
+st.altair_chart(scatterplot)
 
 
 # display the scatter plot using Streamlit
