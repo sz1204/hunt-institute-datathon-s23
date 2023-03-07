@@ -61,6 +61,16 @@ scatterplot = alt.Chart(data22).mark_circle().encode(
     title='Relationship between % Insufficient Sleep and Median Household Income'
 )
 
+scatterplot = alt.Chart(data22).mark_circle().encode(
+    x='% Insufficient Sleep',
+    y='% Food Insecure',
+    tooltip=['County', '% Insufficient Sleep', '% Food Insecure']
+).properties(
+    width=600,
+    height=400,
+    title='Relationship between % Insufficient Sleep and % Food Insecure'
+)
+
 # Show the plot using Streamlit
 st.altair_chart(scatterplot)
 
