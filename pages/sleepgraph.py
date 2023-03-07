@@ -15,6 +15,13 @@ data20 = pd.read_csv("cleaned-data/data_2020.csv")
 data21 = pd.read_csv("cleaned-data/data_2021.csv")
 data22 = pd.read_csv("cleaned-data/data_2022.csv")
 
+
+def load_data():
+    data=pd.read_csv(data16)
+    return data
+
+load_data()
+
 link = "https://raw.githubusercontent.com/sz1204/hunt-institute-datathon-s23/main/cleaned-data/data_16"
 
 st.set_page_config(page_title="Sleep Visual", page_icon=":books:", layout="wide")
