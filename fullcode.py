@@ -165,8 +165,8 @@ cos = [co[0],co[2],+co[5]]
 plt.plot([2016,2018,2021],cos)
 # Set the axis labels and title
 plt.xlabel('Year')
-plt.ylabel('Percentage of Insufficient Sleep')
-plt.title('Drop of Sleep over the Years')
+plt.ylabel('Correlation between Graduation and Sleep Levels')
+plt.title('Correlation over the Years')
 
 # Display the chart
 plt.show()
