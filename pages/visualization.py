@@ -4,16 +4,6 @@ import matplotlib.pyplot as plt
 
 st.set_page_config(page_title="Sleep Visual", page_icon=":books:", layout="wide")
 
-data15 = pd.read_csv("cleaned-data/data_2015.csv")
-data16 = pd.read_csv("cleaned-data/data_2016.csv")
-data17 = pd.read_csv("cleaned-data/data_2017.csv")
-data18 = pd.read_csv("cleaned-data/data_2018.csv")
-data19 = pd.read_csv("cleaned-data/data_2019.csv")
-data20 = pd.read_csv("cleaned-data/data_2020.csv")
-data21 = pd.read_csv("cleaned-data/data_2021.csv")
-data22 = pd.read_csv("cleaned-data/data_2022.csv")
-
-
 st.header("Sleep Visual")
 
 s = "% Severe Housing Problems"
@@ -115,7 +105,7 @@ top_correlations = corr_matrix.unstack().sort_values(ascending=False)[:1000]
 
 # print the top correlations and associated variable names if variables are different
 for i in range(0, len(top_correlations), 2):
-    print("here")
+    #print("here")
     var1 = top_correlations.index[i][0]
     var2 = top_correlations.index[i][1]
     correlation = top_correlations[i]
