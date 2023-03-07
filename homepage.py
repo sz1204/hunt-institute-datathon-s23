@@ -1,10 +1,7 @@
 import streamlit as st
 import pandas as pd
 import altair as alt
-<<<<<<< HEAD
-=======
-import matplotlib.pyplot as plt
->>>>>>> 37e69edd2daccf595329e905817cc07764ca84ad
+# import matplotlib.pyplot as plt
 
 data15 = pd.read_csv("cleaned-data/data_2015.csv")
 data16 = pd.read_csv("cleaned-data/data_2016.csv")
@@ -42,38 +39,27 @@ st.sidebar.title("Please Filter Here")
 selected_densities = st.sidebar.multiselect('Select population densities', list(density_categories.keys()))
 mask = data15['County'].isin(sum([density_categories[d] for d in selected_densities], []))
 filtered_data = data15[mask]
-# health = st.sidebar.radio() # Filter side bars through type of healthcare - physical or mental
 
-files = ["data{}.csv".format(year) for year in range(2015, 2023)]
+# scatter_plot = alt.Chart(data15).mark_circle(size=60).encode(
+#     x="% Physically Inactive",
+#     y="% Severe Housing Problems",
+#     tooltip=["County", "% Physically Inactive", "% Severe Housing Problems"]
+# ).interactive()
 
-# create a sidebar select to choose the year
-selected_year = st.sidebar.selectbox("Select a year", range(2015, 2023))
+# display the scatter plot using Streamlit
+#st.altair_chart(scatter_plot, use_container_width=True)
 
-# read the selected CSV file based on the selected year
-data = pd.read_csv(files[selected_year - 2015])
+merged_data = pd.merge(data15, data22, on="County", suffixes=("_2015", "_2022"))
 
-# create a bar chart based on the % of severe housing problems
-fig, ax = plt.subplots()
-ax.bar(data['County'], data['% of severe housing problems'])
-ax.set_xlabel("County")
-ax.set_ylabel("% of severe housing problems")
-ax.set_title("Severe Housing Problems in {}".format(selected_year))
-st.pyplot(fig)
+# create a scatter plot using Altair
+scatter_plot = alt.Chart(merged_data).mark_circle(size=60).encode(
+    x="% Severe Housing Problems_2015",
+    y="% Severe Housing Problems_2022",
+    tooltip=["County", "% Severe Housing Problems_2015", "% Severe Housing Problems_2022"]
+).interactive()
 
-# Creating bar charts for graduation rate per county
-df = data15[['County', 'Graduation Rate', '% Severe Housing Problems']]
-bar_chart = alt.Chart(df).mark_bar(color='primary_color').encode(
-    x='County',
-    y='Graduation Rate'
-)
-# Create a line chart for % Rural using Altair
-line_chart = alt.Chart(df).mark_line(color='secondary_color').encode(
-    x='County',
-    y='% Severe Housing Problems'
-)
-# Overlay the two charts
-chart = (bar_chart + line_chart)
-st.altair_chart(chart, use_container_width=True)
+# display the scatter plot using Streamlit
+st.altair_chart(scatter_plot, use_container_width=True)
 
 
 primary_color = "#bf293c"
