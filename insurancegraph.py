@@ -1,7 +1,7 @@
 import pandas as pd
 link = "https://raw.githubusercontent.com/sz1204/hunt-institute-datathon-s23/main/cleaned-data/data_20"
 
-s = "% Uninsured"
+s = "% Severe Housing Problems"
 
 dfs = []
 
