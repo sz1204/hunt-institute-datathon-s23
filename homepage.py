@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 import altair as alt
-# import matplotlib.pyplot as plt
 
 data15 = pd.read_csv("cleaned-data/data_2015.csv")
 data16 = pd.read_csv("cleaned-data/data_2016.csv")
@@ -30,33 +29,52 @@ st.set_page_config(page_title="Homepage", page_icon=":books:", layout="wide")
 st.image("assets/hunt-institute.jpg", width=100)
 
 st.title("Welcome to the Steminists' Hunt Institute Datathon 2023 dashboard!")
-st.markdown("Our project focused on measuring how certain legislation affecting affordable housing and youth mental health impacted student physical health, mental health, and graduation.")
+st.markdown("Our project focused on the correlation between low sleep levels and high school graduation levels.")
 st.markdown('   ')
 
 
 # Sidebar
-st.sidebar.title("Please Filter Here")
-selected_densities = st.sidebar.multiselect('Select population densities', list(density_categories.keys()))
-mask = data15['County'].isin(sum([density_categories[d] for d in selected_densities], []))
-filtered_data = data15[mask]
+# st.sidebar.title("Please Filter Here")
+# selected_densities = st.sidebar.multiselect('Select population densities', list(density_categories.keys()))
+# mask = data15['County'].isin(sum([density_categories[d] for d in selected_densities], []))
+# filtered_data = data15[mask]
 
-# scatter_plot = alt.Chart(data15).mark_circle(size=60).encode(
-#     x="% Physically Inactive",
-#     y="% Severe Housing Problems",
-#     tooltip=["County", "% Physically Inactive", "% Severe Housing Problems"]
-# ).interactive()
-
-# display the scatter plot using Streamlit
-#st.altair_chart(scatter_plot, use_container_width=True)
 
 merged_data = pd.merge(data15, data22, on="County", suffixes=("_2015", "_2022"))
 
 # create a scatter plot using Altair
+
+merged_data = pd.merge(data16, data22, on='County', suffixes=("_2016", "_2022"))
 scatter_plot = alt.Chart(merged_data).mark_circle(size=60).encode(
-    x="% Severe Housing Problems_2015",
-    y="% Severe Housing Problems_2022",
-    tooltip=["County", "% Severe Housing Problems_2015", "% Severe Housing Problems_2022"]
+    x="% Insufficient Sleep_2016",
+    y="% Insufficient Sleep_2022",
+    tooltip=["County", "% Insufficient Sleep_2016", "% Insufficient Sleep_2022"]
 ).interactive()
+
+scatterplot = alt.Chart(data22).mark_circle().encode(
+    x='% Insufficient Sleep',
+    y='Median Household Income',
+    tooltip=['County', '% Insufficient Sleep', 'Median Household Income']
+).properties(
+    width=600,
+    height=400,
+    title='Relationship between % Insufficient Sleep and Median Household Income'
+)
+st.altair_chart(scatterplot)
+
+scatterplot = alt.Chart(data22).mark_circle().encode(
+    x='% Insufficient Sleep',
+    y='% Food Insecure',
+    tooltip=['County', '% Insufficient Sleep', '% Food Insecure']
+).properties(
+    width=600,
+    height=400,
+    title='Relationship between % Insufficient Sleep and % Food Insecure'
+)
+
+# Show the plot using Streamlit
+st.altair_chart(scatterplot)
+
 
 # display the scatter plot using Streamlit
 st.altair_chart(scatter_plot, use_container_width=True)
